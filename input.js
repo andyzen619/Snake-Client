@@ -1,4 +1,5 @@
 let connection;
+let moveArray = ['a', 'w', 'd', 's', ];
 
 /**
  * Setup User Interface 
@@ -12,7 +13,9 @@ const setupInput = function(conn) {
   stdin.setEncoding('utf8');
 
   stdin.on('data', (data) => {
-    connection.write(`Move: ${data}`);
+    if (moveArray.includes(data)) {
+      setInterval(() => { connection.write(`Move: ${data}`); }, 500);
+    }
   });
 
   stdin.on('data', (data) => {
